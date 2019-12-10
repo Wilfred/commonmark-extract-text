@@ -1,4 +1,4 @@
-# commonmark-extract-text
+# commonmark-extract-text [![CircleCI](https://circleci.com/gh/Wilfred/commonmark-extract-text.svg?style=svg)](https://circleci.com/gh/Wilfred/commonmark-extract-text)
 
 Extracts plain prose from commonmark source code. Useful for text
 analysis of commonmark.
