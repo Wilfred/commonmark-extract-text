@@ -16,6 +16,15 @@ describe("extract text", () => {
   test("link", () => {
     expect(trimmedExtract("[foo](/bar)")).toBe("foo");
   });
+
+  test("heading", () => {
+    expect(trimmedExtract("# foo")).toBe("foo");
+  });
+
+  test("bullets", () => {
+    // TODO: Split over multiple lines
+    expect(trimmedExtract("* foo\n* bar")).toBe("foo bar");
+  });
 });
 
 describe("ignore code", () => {
