@@ -1,11 +1,7 @@
-const commonmark = require("commonmark");
 const extract = require("./index");
 
 function trimmedExtract(src) {
-  const reader = new commonmark.Parser();
-  const parsed = reader.parse(src);
-
-  return extract.fromTree(parsed).trim();
+  return extract.fromText(src).trim();
 }
 
 describe("extract text", () => {

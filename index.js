@@ -1,5 +1,10 @@
 const commonmark = require("commonmark");
 
+function fromText(src) {
+  const reader = new commonmark.Parser();
+  return fromTree(reader.parse(src));
+}
+
 function fromTree(parsed) {
   const walker = parsed.walker();
   let event;
@@ -15,4 +20,4 @@ function fromTree(parsed) {
   return parts.join(" ");
 }
 
-module.exports = { fromTree };
+module.exports = { fromText, fromTree };
