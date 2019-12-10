@@ -9,6 +9,10 @@ describe("extract text", () => {
     expect(trimmedExtract("foo")).toBe("foo");
   });
 
+  test("multiple paragraphs", () => {
+    expect(trimmedExtract("foo\n\nbar")).toBe("foo bar");
+  });
+
   test("bold", () => {
     expect(trimmedExtract("**foo**")).toBe("foo");
   });
