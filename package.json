@@ -1,0 +1,28 @@
+{
+  "name": "commonmark-extract-text",
+  "version": "0.1.0",
+  "description": "extract plain text from commonmark source",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint . -f codeframe --fix",
+    "test": "jest",
+    "test-circleci": "jest --ci --runInBand --reporters=default --reporters=jest-junit --collectCoverage=true"
+  },
+  "jest-junit": {
+    "output": "./test-results/junit/results.xml"
+  },
+  "keywords": [
+    "commonmark"
+  ],
+  "author": "Wilfred Hughes",
+  "license": "ISC",
+  "dependencies": {
+    "commonmark": "^0.29.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-plugin-jest": "^23.1.1",
+    "jest": "^24.9.0",
+    "jest-junit": "^10.0.0"
+  }
+}
