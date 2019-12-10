@@ -31,4 +31,7 @@ describe("ignore code", () => {
   test("inline", () => {
     expect(trimmedExtract("foo `bar` baz")).toBe("foo baz");
   });
+  test("code block", () => {
+    expect(trimmedExtract("```\nfoo\n```")).toBe("");
+  });
 });
