@@ -36,7 +36,6 @@ describe("extract text", () => {
   });
 
   test("bullets", () => {
-    // TODO: Split over multiple lines
     expect(extractSimplified("* foo\n* bar")).toBe("foo\nbar");
   });
 
