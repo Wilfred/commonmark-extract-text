@@ -31,8 +31,8 @@ describe("extract text", () => {
     expect(extractSimplified("[foo](/bar)")).toBe("foo");
   });
 
-  test("heading", () => {
-    expect(extractSimplified("# foo")).toBe("foo");
+  test("headings", () => {
+    expect(extractSimplified("# foo\n# bar")).toBe("foo\nbar");
   });
 
   test("bullets", () => {

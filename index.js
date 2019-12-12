@@ -15,7 +15,7 @@ function fromTree(parsed) {
     if (event.entering && node.type === "text") {
       parts.push(node.literal);
     }
-    if (!event.entering && node.type === "paragraph") {
+    if (!event.entering && ["paragraph", "heading"].includes(node.type)) {
       parts.push("\n");
     }
   }
