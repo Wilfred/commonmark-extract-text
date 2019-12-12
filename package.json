@@ -1,6 +1,6 @@
 {
   "name": "commonmark-extract-text",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "extract plain text from commonmark source",
   "main": "index.js",
   "scripts": {
