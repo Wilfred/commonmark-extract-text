@@ -13,11 +13,14 @@ function fromTree(parsed) {
   while ((event = walker.next())) {
     const node = event.node;
     if (event.entering && node.type === "text") {
-      parts.push(node.literal.trim());
+      parts.push(node.literal);
+    }
+    if (!event.entering && node.type === "paragraph") {
+      parts.push("\n");
     }
   }
 
-  return parts.join(" ");
+  return parts.join("");
 }
 
 module.exports = { fromText, fromTree };

@@ -1,41 +1,57 @@
 const extract = require("./index");
 
-function trimmedExtract(src) {
-  return extract.fromText(src).trim();
+/** Collapse successive whitespace characters. It's important we
+ * preserve whitespace, but extra whitespace is harmless.
+ */
+function simplifyWhitespace(s) {
+  return s
+    .replace(/ +/g, " ")
+    .replace(/\n+/g, "\n")
+    .trim();
+}
+
+function extractSimplified(src) {
+  return simplifyWhitespace(extract.fromText(src));
 }
 
 describe("extract text", () => {
   test("paragraph", () => {
-    expect(trimmedExtract("foo")).toBe("foo");
+    expect(extractSimplified("foo")).toBe("foo");
   });
 
   test("multiple paragraphs", () => {
-    expect(trimmedExtract("foo\n\nbar")).toBe("foo bar");
+    expect(extractSimplified("foo\n\nbar")).toBe("foo\nbar");
   });
 
   test("bold", () => {
-    expect(trimmedExtract("**foo**")).toBe("foo");
+    expect(extractSimplified("**foo**")).toBe("foo");
   });
 
   test("link", () => {
-    expect(trimmedExtract("[foo](/bar)")).toBe("foo");
+    expect(extractSimplified("[foo](/bar)")).toBe("foo");
   });
 
   test("heading", () => {
-    expect(trimmedExtract("# foo")).toBe("foo");
+    expect(extractSimplified("# foo")).toBe("foo");
   });
 
   test("bullets", () => {
     // TODO: Split over multiple lines
-    expect(trimmedExtract("* foo\n* bar")).toBe("foo bar");
+    expect(extractSimplified("* foo\n* bar")).toBe("foo\nbar");
+  });
+
+  test("combined syntax", () => {
+    expect(extractSimplified("one [two](/xyz) *three*.")).toBe(
+      "one two three."
+    );
   });
 });
 
 describe("ignore code", () => {
   test("inline", () => {
-    expect(trimmedExtract("foo `bar` baz")).toBe("foo baz");
+    expect(extractSimplified("foo `bar` baz")).toBe("foo baz");
   });
   test("code block", () => {
-    expect(trimmedExtract("```\nfoo\n```")).toBe("");
+    expect(extractSimplified("```\nfoo\n```")).toBe("");
   });
 });
